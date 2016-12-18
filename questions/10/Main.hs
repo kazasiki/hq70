@@ -17,13 +17,13 @@ prepare :: [Int] -> Int -> [[Int]]
 prepare list n = patterns (list ++ take (n-1) list) n
 
 calcMax :: [Int] -> Int -> Int
-calcMax list n = maximum(map sum $ prepare list n)
+calcMax = (maximum .) . (map sum .) . prepare
 
 compareRoulette :: Int -> Bool
 compareRoulette n = calcMax european n < calcMax american n
 
-solve :: Int
-solve = length $ filter id $ map compareRoulette [2..36]
+solve :: [Int] -> Int
+solve = length . filter id . map compareRoulette
 
 main :: IO ()
-main = print solve
+main = print $ solve [2..36]

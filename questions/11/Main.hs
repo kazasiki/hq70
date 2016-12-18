@@ -10,11 +10,10 @@ int2base :: Integer -> Integer -> [Integer]
 int2base _ 0 = []
 int2base x y = y `mod` x : int2base x (y `div` x)
 
-check :: Integer -> Bool
-check n = n `mod` sum (int2dec n) == 0
-
 solve :: [Int] -> [Integer]
 solve = take 5 . filter check . map fib
+  where
+    check n = n `mod` sum (int2dec n) == 0
 
 main :: IO ()
 main = print $ solve [13..]

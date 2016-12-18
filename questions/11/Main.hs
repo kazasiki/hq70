@@ -13,8 +13,8 @@ int2base x y = y `mod` x : int2base x (y `div` x)
 check :: Integer -> Bool
 check n = n `mod` sum (int2dec n) == 0
 
-solve :: [Integer]
-solve = take 5 $ filter check $ map fib [13..]
+solve :: [Int] -> [Integer]
+solve = take 5 . filter check . map fib
 
 main :: IO ()
-main = print solve
+main = print $ solve [13..]

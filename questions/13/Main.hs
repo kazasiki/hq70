@@ -9,8 +9,8 @@ match' [r, e, a, d, w, i, t, l, k, s] =
     talk  =             t * 1000 + a * 100 + l * 10 + k
     skill = s * 10000 + k * 1000 + i * 100 + l * 10 + l
 
-filter' :: [[(Char, Int)]]
-filter' = map (zip "readwitlks")  $ filter match' $ permutations [0,1,2,3,4,5,6,7,8,9]
+filter' :: [Int] -> [[(Char, Int)]]
+filter' = map (zip "readwitlks") . filter match' . permutations
 
 main :: IO ()
-main = print filter'
+main = print $ filter' [0,1,2,3,4,5,6,7,8,9]
